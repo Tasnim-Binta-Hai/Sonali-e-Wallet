@@ -3,6 +3,8 @@ package com.example.mobilebankingapplication;
 
 import android.os.Bundle;
 import android.graphics.Color;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.HideReturnsTransformationMethod;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     EditText phoneInput, pinInput;
     Button loginButton;
-    TextView registerText;
+    TextView registerText, togglePinVisibility;
+
+    boolean isPinVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,43 @@ public class MainActivity extends AppCompatActivity {
         pinInput = findViewById(R.id.pinInput);
         loginButton = findViewById(R.id.loginButton);
         registerText = findViewById(R.id.registerText);
+        togglePinVisibility = findViewById(R.id.togglePinVisibility);
 
-        // Login Button Functionality
+        // PIN Show / Hide
+        pinInput.setTransformationMethod(
+                PasswordTransformationMethod.getInstance()
+        );
+
+        togglePinVisibility.setOnClickListener(v -> {
+
+            int cursorPosition = pinInput.getSelectionStart();
+
+            if (isPinVisible) {
+
+                pinInput.setTransformationMethod(
+                        PasswordTransformationMethod.getInstance()
+                );
+
+                togglePinVisibility.setText("👁");
+                isPinVisible = false;
+
+            } else {
+
+                pinInput.setTransformationMethod(
+                        HideReturnsTransformationMethod.getInstance()
+                );
+
+                togglePinVisibility.setText("🙈");
+                isPinVisible = true;
+            }
+
+            pinInput.setSelection(
+                    Math.max(0, Math.min(cursorPosition,
+                            pinInput.getText().length()))
+            );
+        });
+
+        // Login Button
         loginButton.setOnClickListener(v -> {
 
             String phone = phoneInput.getText().toString().trim();
@@ -50,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Registration Functionality
+        // Registration
         registerText.setOnClickListener(v -> {
 
             Toast.makeText(this,

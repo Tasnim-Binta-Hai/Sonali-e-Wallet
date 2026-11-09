@@ -69,7 +69,7 @@
 
         </LinearLayout>
 
-        <!-- PIN Input -->
+        <!-- PIN Input with Show Hide Button -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,6 +99,19 @@
                 android:textColor="#333333"
                 android:textColorHint="#999999"
                 android:padding="5dp"/>
+
+            <!-- Eye Button -->
+
+            <TextView
+                android:id="@+id/togglePinVisibility"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:text="👁"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Show or hide PIN"/>
 
         </LinearLayout>
 
@@ -168,7 +181,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Branch\nLocations"
+                    android:text="Branch&#10;Locations"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:gravity="center"/>
@@ -195,7 +208,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ATM\nLocations"
+                    android:text="ATM&#10;Locations"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:gravity="center"/>
@@ -222,7 +235,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Help &amp;\nSupport"
+                    android:text="Help &amp;&#10;Support"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:gravity="center"/>
