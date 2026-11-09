@@ -1,6 +1,7 @@
 
 package com.example.mobilebankingapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.graphics.Color;
 import android.text.method.PasswordTransformationMethod;
@@ -26,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        // Status Bar Color
         getWindow().setStatusBarColor(Color.rgb(42, 155, 210));
         getWindow().setNavigationBarColor(Color.rgb(7, 90, 158));
 
+        // Connect XML Views
         phoneInput = findViewById(R.id.phoneInput);
         pinInput = findViewById(R.id.pinInput);
         loginButton = findViewById(R.id.loginButton);
@@ -89,12 +92,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Registration
+        // Open Registration Screen
         registerText.setOnClickListener(v -> {
 
-            Toast.makeText(this,
-                    "Registration Successful! (Demo)",
-                    Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    RegistrationActivity.class
+            );
+
+            startActivity(intent);
         });
     }
 }

@@ -1,0 +1,171 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- Sonali Bank Logo -->
+
+        <ImageView
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/sonali_bank_logo"
+            android:scaleType="fitCenter"
+            android:contentDescription="Sonali Bank Logo"/>
+
+        <!-- App Name -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sonali e-Wallet"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Heading -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Your Account"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Full Name -->
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/bg_input"
+            android:padding="15dp"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#999999"/>
+
+        <!-- Mobile Number -->
+
+        <EditText
+            android:id="@+id/mobileInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/bg_input"
+            android:padding="15dp"
+            android:hint="Mobile Number"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#999999"/>
+
+        <!-- NID Number -->
+
+        <EditText
+            android:id="@+id/nidInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/bg_input"
+            android:padding="15dp"
+            android:hint="NID Number"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#999999"/>
+
+        <!-- Date of Birth -->
+
+        <EditText
+            android:id="@+id/dobInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/bg_input"
+            android:padding="15dp"
+            android:hint="Date of Birth"
+            android:focusable="false"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:textColor="#333333"
+            android:textColorHint="#999999"/>
+
+        <!-- Create PIN -->
+
+        <EditText
+            android:id="@+id/createPinInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/bg_input"
+            android:padding="15dp"
+            android:hint="Create 6-digit PIN"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#999999"/>
+
+        <!-- Confirm PIN -->
+
+        <EditText
+            android:id="@+id/confirmPinInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/bg_input"
+            android:padding="15dp"
+            android:hint="Confirm 6-digit PIN"
+            android:inputType="numberPassword"
+            android:maxLength="6"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#999999"/>
+
+        <!-- Register Button -->
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_gold_button"
+            android:backgroundTint="@null"
+            android:text="REGISTER"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <!-- Back to Login -->
+
+        <TextView
+            android:id="@+id/backToLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="25dp"
+            android:text="Already have an account? Login"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"/>
+
+    </LinearLayout>
+
+</ScrollView>
