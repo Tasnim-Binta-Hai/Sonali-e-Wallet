@@ -1,19 +1,236 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/bg_screen"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Sonali Bank Logo -->
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/sonali_bank_logo"
+            android:scaleType="fitCenter"
+            android:contentDescription="Sonali Bank Logo"/>
+
+        <!-- App Name -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Sonali e-Wallet"
+            android:textColor="#FFFFFF"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Mobile Number Input -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:text="📱"
+                android:textSize="25sp"/>
+
+            <EditText
+                android:id="@+id/phoneInput"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Mobile Number"
+                android:inputType="phone"
+                android:background="@null"
+                android:singleLine="true"
+                android:textSize="18sp"
+                android:textColor="#333333"
+                android:textColorHint="#999999"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+
+        <!-- PIN Input -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:text="🔒"
+                android:textSize="23sp"/>
+
+            <EditText
+                android:id="@+id/pinInput"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Enter e-Wallet PIN"
+                android:inputType="numberPassword"
+                android:background="@null"
+                android:singleLine="true"
+                android:textSize="18sp"
+                android:textColor="#333333"
+                android:textColorHint="#999999"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+
+        <!-- Login Button -->
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="42dp"
+            android:background="@drawable/bg_gold_button"
+            android:backgroundTint="@null"
+            android:text="LOGIN"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+
+        <!-- Registration Text -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:text="Don't have any account?"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/registerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Register"
+            android:textColor="#FFD45C"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <!-- Bottom Options -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:layout_marginTop="110dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- Branch Locations -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="7dp"
+                android:background="@drawable/bg_tile"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏦"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Branch\nLocations"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <!-- ATM Locations -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/bg_tile"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏧"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ATM\nLocations"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <!-- Help and Support -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:background="@drawable/bg_tile"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="❔"
+                    android:textSize="28sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Help &amp;\nSupport"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
