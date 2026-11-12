@@ -83,23 +83,27 @@ public class MainActivity extends AppCompatActivity {
             }
 
             pinInput.setSelection(
-                    Math.max(0, Math.min(
-                            cursorPosition,
-                            pinInput.getText().length()
-                    ))
+                    Math.max(
+                            0,
+                            Math.min(
+                                    cursorPosition,
+                                    pinInput.getText().length()
+                            )
+                    )
             );
         });
 
-        // Real Backend Login
+        // Backend Login
         loginButton.setOnClickListener(v -> {
 
             String phone = phoneInput.getText().toString().trim();
             String pin = pinInput.getText().toString().trim();
 
+            // Empty Field Validation
             if (phone.isEmpty() || pin.isEmpty()) {
 
                 Toast.makeText(
-                        this,
+                        MainActivity.this,
                         "Please enter mobile number and PIN",
                         Toast.LENGTH_SHORT
                 ).show();
@@ -107,11 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+            // Mobile and PIN Validation
             if (!phone.matches("01[3-9][0-9]{8}") ||
                     !pin.matches("[0-9]{6}")) {
 
                 Toast.makeText(
-                        this,
+                        MainActivity.this,
                         "Enter a valid mobile number and 6-digit PIN",
                         Toast.LENGTH_SHORT
                 ).show();
@@ -140,14 +145,16 @@ public class MainActivity extends AppCompatActivity {
 
                     connection.setRequestProperty(
                             "Content-Type",
-                            "application/json"
+                            "application/json; charset=UTF-8"
                     );
 
+                    // Create JSON Request
                     JSONObject requestBody = new JSONObject();
 
                     requestBody.put("mobile", phone);
                     requestBody.put("pin", pin);
 
+                    // Send Request
                     try (OutputStream output =
                                  connection.getOutputStream()) {
 
@@ -167,17 +174,21 @@ public class MainActivity extends AppCompatActivity {
 
                     StringBuilder response = new StringBuilder();
 
-                    try (BufferedReader reader =
-                                 new BufferedReader(
-                                         new InputStreamReader(
-                                                 inputStream,
-                                                 StandardCharsets.UTF_8
-                                         ))) {
+                    if (inputStream != null) {
 
-                        String line;
+                        try (BufferedReader reader =
+                                     new BufferedReader(
+                                             new InputStreamReader(
+                                                     inputStream,
+                                                     StandardCharsets.UTF_8
+                                             )
+                                     )) {
 
-                        while ((line = reader.readLine()) != null) {
-                            response.append(line);
+                            String line;
+
+                            while ((line = reader.readLine()) != null) {
+                                response.append(line);
+                            }
                         }
                     }
 
@@ -193,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
                                     "Login failed"
                             );
 
+                    // Handle Login Response
                     runOnUiThread(() -> {
 
                         loginButton.setEnabled(true);
@@ -200,11 +212,24 @@ public class MainActivity extends AppCompatActivity {
 
                         if (success) {
 
-                            Toast.makeText(
+                            int userId =
+                                    jsonResponse.optInt("userId", -1);
+
+                            int customerId =
+                                    jsonResponse.optInt("customerId", -1);
+
+                            // Open Dashboard
+                            Intent intent = new Intent(
                                     MainActivity.this,
-                                    "Welcome! Login Successful.",
-                                    Toast.LENGTH_LONG
-                            ).show();
+                                    DashboardActivity.class
+                            );
+
+                            intent.putExtra("USER_ID", userId);
+                            intent.putExtra("CUSTOMER_ID", customerId);
+
+                            startActivity(intent);
+
+                            finish();
 
                         } else {
 

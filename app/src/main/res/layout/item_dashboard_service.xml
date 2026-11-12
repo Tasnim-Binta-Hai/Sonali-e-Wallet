@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_tile"
+    android:elevation="3dp"
+    android:padding="8dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- SERVICE ICON -->
+    <TextView
+        android:id="@+id/serviceIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="💰"
+        android:textSize="38sp"
+        android:gravity="center"
+        android:includeFontPadding="false" />
+
+    <!-- SERVICE NAME -->
+    <TextView
+        android:id="@+id/serviceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Add Money"
+        android:textColor="#171717"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:includeFontPadding="false" />
+
+</LinearLayout>
