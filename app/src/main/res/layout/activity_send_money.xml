@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFDF7">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:background="#F2BE2C">
+
+        <!-- Large Back Button -->
+        <TextView
+            android:id="@+id/backButton"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="←  Send Money"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Go back to Send Money Menu"/>
+
+        <TextView
+            android:id="@+id/transferSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Secure money transfer"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <!-- Form Scroll Area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Transfer Details"
+                    android:textColor="#1769AA"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="18dp"/>
+
+                <!-- Transfer Title -->
+                <TextView
+                    android:id="@+id/transferTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bank Account to SBL Bank Account"
+                    android:textColor="#1769AA"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="18dp"/>
+
+                <!-- Usable Balance -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Source Usable Balance"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/sourceBalanceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="৳ Loading..."
+                    android:textColor="#16834A"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="20dp"/>
+
+                <!-- Receiver -->
+                <TextView
+                    android:id="@+id/destinationLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Receiver Account Number"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:id="@+id/destinationNumberInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:hint="Enter receiver account number"
+                    android:inputType="textCapCharacters"
+                    android:singleLine="true"
+                    android:padding="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#1976B9"/>
+
+                <!-- Amount -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Send Amount (BDT)"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:id="@+id/amountInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:hint="Enter amount"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:padding="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#1976B9"/>
+
+                <!-- PIN -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Transaction PIN"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:id="@+id/pinInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:hint="Enter your 6-digit Login PIN"
+                    android:inputType="numberPassword"
+                    android:maxLength="6"
+                    android:singleLine="true"
+                    android:padding="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="24dp"
+                    android:backgroundTint="#1976B9"/>
+
+                <!-- Submit -->
+                <Button
+                    android:id="@+id/continueTransferButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:text="SUBMIT"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:backgroundTint="#1976B9"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your transactions are protected by encrypted balance management."
+                android:textColor="#777777"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:padding="18dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

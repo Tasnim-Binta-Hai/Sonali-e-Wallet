@@ -1,5 +1,6 @@
 package com.example.mobilebankingapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -72,23 +73,29 @@ public class DashboardActivity extends AppCompatActivity {
         executorService = Executors.newSingleThreadExecutor();
         mainHandler = new Handler(Looper.getMainLooper());
 
-        // Get Customer ID from Login Activity
         customerId = getIntent().getIntExtra("CUSTOMER_ID", -1);
 
-        // Initial balance display
         bankBalanceText.setText("৳ Loading...");
         walletBalanceText.setText("৳ Loading...");
 
         createServiceCards();
+    }
 
-        // Load balances from Oracle Database
-        loadDashboardBalance();
+    // AUTO REFRESH WHEN DASHBOARD OPENS
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (executorService != null) {
+            loadDashboardBalance();
+        }
     }
 
     // DASHBOARD BALANCE API
     private void loadDashboardBalance() {
 
         if (customerId <= 0) {
+
             bankBalanceText.setText("৳ 0.00");
             walletBalanceText.setText("৳ 0.00");
 
@@ -216,7 +223,7 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
-    // Format balance
+    // FORMAT BALANCE
     private String formatBalance(double balance) {
 
         NumberFormat formatter = NumberFormat.getNumberInstance(
@@ -269,12 +276,71 @@ public class DashboardActivity extends AppCompatActivity {
                 icon.setText(serviceIcons[j]);
                 name.setText(serviceNames[j]);
 
+                final String selectedService = serviceNames[j];
+
+                card.setOnClickListener(v -> {
+
+                    // OPEN ADD MONEY SCREEN
+                    if (selectedService.equals("Add Money")) {
+
+                        Intent intent = new Intent(
+                                DashboardActivity.this,
+                                AddMoneyActivity.class
+                        );
+
+                        intent.putExtra("CUSTOMER_ID", customerId);
+
+                        startActivity(intent);
+
+                    }
+
+                    // OPEN BANK DEPOSIT SCREEN
+                    else if (selectedService.equals("Bank Deposit")) {
+
+                        Intent intent = new Intent(
+                                DashboardActivity.this,
+                                BankDepositActivity.class
+                        );
+
+                        intent.putExtra("CUSTOMER_ID", customerId);
+
+                        startActivity(intent);
+
+                    }
+
+                    // OPEN SEND MONEY MENU
+                    else if (selectedService.equals("Send Money")) {
+
+                        Intent intent = new Intent(
+                                DashboardActivity.this,
+                                SendMoneyMenuActivity.class
+                        );
+
+                        intent.putExtra("CUSTOMER_ID", customerId);
+
+                        startActivity(intent);
+
+                    }
+
+                    // OTHER SERVICES
+                    else {
+
+                        Toast.makeText(
+                                DashboardActivity.this,
+                                selectedService + " Selected",
+                                Toast.LENGTH_SHORT
+                        ).show();
+
+                    }
+
+                });
+
                 row.addView(card);
             }
         }
     }
 
-    // Convert DP to Pixels
+    // CONVERT DP TO PIXELS
     private int dpToPx(int dp) {
 
         return (int) (
@@ -283,6 +349,7 @@ public class DashboardActivity extends AppCompatActivity {
         );
     }
 
+    // ACTIVITY DESTROY
     @Override
     protected void onDestroy() {
 

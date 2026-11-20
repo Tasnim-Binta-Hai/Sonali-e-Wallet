@@ -13,24 +13,56 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileBankingApplication"
         android:usesCleartextTraffic="true">
+
+        <!-- Login Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <!-- Registration Activity -->
         <activity
             android:name=".RegistrationActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Dashboard Activity -->
         <activity
             android:name=".DashboardActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Send Money Menu Activity -->
+        <activity
+            android:name=".SendMoneyMenuActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Send Money Transfer Activity -->
+        <activity
+            android:name=".SendMoneyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Add Money Activity -->
+        <activity
+            android:name=".AddMoneyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Bank Deposit Activity -->
+        <activity
+            android:name=".BankDepositActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

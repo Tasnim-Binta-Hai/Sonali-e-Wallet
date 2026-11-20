@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sendMoneyMenuRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:paddingBottom="28dp">
+
+    <!-- Menu Header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:gravity="center_vertical"
+        android:paddingStart="28dp"
+        android:paddingEnd="22dp">
+
+        <TextView
+            android:id="@+id/menuTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Send Money"
+            android:textColor="#17365D"
+            android:textSize="23sp"
+            android:textStyle="bold"/>
+
+        <!-- Close Button -->
+        <TextView
+            android:id="@+id/closeMenuButton"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="×"
+            android:textColor="#64748B"
+            android:textSize="34sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="closeMenu"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE"/>
+
+    <!-- Bank to Bank -->
+    <LinearLayout
+        android:id="@+id/optionBankToBank"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:background="#F7F9FC"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bank Account to SBL Bank Account"
+            android:textColor="#1769AA"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textColor="#1769AA"
+            android:textSize="38sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- Wallet to Bank -->
+    <LinearLayout
+        android:id="@+id/optionWalletToBank"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:background="#F7F9FC"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Wallet to SBL Bank Account"
+            android:textColor="#1769AA"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textColor="#1769AA"
+            android:textSize="38sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- Bank to Wallet -->
+    <LinearLayout
+        android:id="@+id/optionBankToWallet"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:background="#F7F9FC"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bank Account to Sonali e-Wallet"
+            android:textColor="#1769AA"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textColor="#1769AA"
+            android:textSize="38sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- Wallet to Wallet -->
+    <LinearLayout
+        android:id="@+id/optionWalletToWallet"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:background="#F7F9FC"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Wallet to Sonali e-Wallet"
+            android:textColor="#1769AA"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="›"
+            android:textColor="#1769AA"
+            android:textSize="38sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
