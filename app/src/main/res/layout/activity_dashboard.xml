@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -239,13 +240,16 @@
 
         </LinearLayout>
 
-        <!-- HISTORY -->
+        <!-- HISTORY - WALLET STATEMENT BUTTON -->
         <LinearLayout
+            android:id="@+id/historyButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -282,13 +286,16 @@
 
         </LinearLayout>
 
-        <!-- ANALYTICS -->
+        <!-- ANALYTICS - BANK STATEMENT BUTTON -->
         <LinearLayout
+            android:id="@+id/analyticsButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"

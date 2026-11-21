@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- INTERNET PERMISSION -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,7 +15,7 @@
         android:theme="@style/Theme.MobileBankingApplication"
         android:usesCleartextTraffic="true">
 
-        <!-- Login Activity -->
+        <!-- LOGIN ACTIVITY -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,39 +28,63 @@
 
         </activity>
 
-        <!-- Registration Activity -->
+        <!-- REGISTRATION ACTIVITY -->
         <activity
             android:name=".RegistrationActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Dashboard Activity -->
+        <!-- DASHBOARD ACTIVITY -->
         <activity
             android:name=".DashboardActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Send Money Menu Activity -->
+        <!-- SEND MONEY MENU ACTIVITY -->
         <activity
             android:name=".SendMoneyMenuActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Send Money Transfer Activity -->
+        <!-- SEND MONEY TRANSFER ACTIVITY -->
         <activity
             android:name=".SendMoneyActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Add Money Activity -->
+        <!-- ADD MONEY ACTIVITY -->
         <activity
             android:name=".AddMoneyActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Bank Deposit Activity -->
+        <!-- BANK DEPOSIT ACTIVITY -->
         <activity
             android:name=".BankDepositActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- WALLET STATEMENT ACTIVITY -->
+        <activity
+            android:name=".WalletStatementActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- BANK STATEMENT ACTIVITY -->
+        <activity
+            android:name=".BankStatementActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- COMMON STATEMENT LIST ACTIVITY -->
+        <activity
+            android:name=".StatementListActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- TRANSACTION DETAILS ACTIVITY -->
+        <activity
+            android:name=".TransactionDetailsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

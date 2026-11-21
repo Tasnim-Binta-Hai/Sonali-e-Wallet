@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sendMoneyMenuRoot"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
     android:paddingBottom="28dp">
 
-    <!-- Menu Header -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="78dp"
@@ -26,19 +26,19 @@
             android:textSize="23sp"
             android:textStyle="bold"/>
 
-        <!-- Close Button -->
         <TextView
             android:id="@+id/closeMenuButton"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:text="×"
             android:textColor="#64748B"
             android:textSize="34sp"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="closeMenu"/>
+            android:background="?android:attr/selectableItemBackgroundBorderless"/>
 
     </RelativeLayout>
 
@@ -47,7 +47,6 @@
         android:layout_height="1dp"
         android:background="#EEEEEE"/>
 
-    <!-- Bank to Bank -->
     <LinearLayout
         android:id="@+id/optionBankToBank"
         android:layout_width="match_parent"
@@ -82,7 +81,6 @@
 
     </LinearLayout>
 
-    <!-- Wallet to Bank -->
     <LinearLayout
         android:id="@+id/optionWalletToBank"
         android:layout_width="match_parent"
@@ -117,7 +115,6 @@
 
     </LinearLayout>
 
-    <!-- Bank to Wallet -->
     <LinearLayout
         android:id="@+id/optionBankToWallet"
         android:layout_width="match_parent"
@@ -152,7 +149,6 @@
 
     </LinearLayout>
 
-    <!-- Wallet to Wallet -->
     <LinearLayout
         android:id="@+id/optionWalletToWallet"
         android:layout_width="match_parent"

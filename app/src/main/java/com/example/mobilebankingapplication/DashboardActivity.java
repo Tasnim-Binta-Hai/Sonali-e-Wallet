@@ -29,34 +29,23 @@ public class DashboardActivity extends AppCompatActivity {
     LinearLayout servicesContainer;
     TextView bankBalanceText, walletBalanceText;
 
+    private LinearLayout historyButton, analyticsButton;
+
     private ExecutorService executorService;
     private Handler mainHandler;
 
     private int customerId;
 
     String[] serviceNames = {
-            "Add Money",
-            "Bank Deposit",
-            "Send Money",
-            "Bill Pay",
-            "Recharge",
-            "DPS & FDR",
-            "BEFTN",
-            "Cards",
-            "NPSB",
-            "Remittance",
-            "Loan",
-            "e-Bank",
-            "RTGS",
-            "SOD",
-            "Swadhin Cash"
+            "Add Money", "Bank Deposit", "Send Money",
+            "Bill Pay", "Recharge", "DPS & FDR",
+            "BEFTN", "Cards", "NPSB", "Remittance",
+            "Loan", "e-Bank", "RTGS", "SOD", "Swadhin Cash"
     };
 
     String[] serviceIcons = {
-            "💰", "🏦", "💸",
-            "🧾", "📱", "🏛️",
-            "🏦", "💳", "🏛️",
-            "💵", "💰", "📲",
+            "💰", "🏦", "💸", "🧾", "📱", "🏛️",
+            "🏦", "💳", "🏛️", "💵", "💰", "📲",
             "🏦", "💳", "💸"
     };
 
@@ -66,9 +55,11 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         servicesContainer = findViewById(R.id.servicesContainer);
-
         bankBalanceText = findViewById(R.id.bankBalanceText);
         walletBalanceText = findViewById(R.id.walletBalanceText);
+
+        historyButton = findViewById(R.id.historyButton);
+        analyticsButton = findViewById(R.id.analyticsButton);
 
         executorService = Executors.newSingleThreadExecutor();
         mainHandler = new Handler(Looper.getMainLooper());
@@ -78,10 +69,29 @@ public class DashboardActivity extends AppCompatActivity {
         bankBalanceText.setText("৳ Loading...");
         walletBalanceText.setText("৳ Loading...");
 
+        // HISTORY = WALLET STATEMENT
+        historyButton.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    DashboardActivity.this,
+                    WalletStatementActivity.class
+            );
+            intent.putExtra("CUSTOMER_ID", customerId);
+            startActivity(intent);
+        });
+
+        // ANALYTICS = BANK STATEMENT
+        analyticsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    DashboardActivity.this,
+                    BankStatementActivity.class
+            );
+            intent.putExtra("CUSTOMER_ID", customerId);
+            startActivity(intent);
+        });
+
         createServiceCards();
     }
 
-    // AUTO REFRESH WHEN DASHBOARD OPENS
     @Override
     protected void onResume() {
         super.onResume();
@@ -91,11 +101,9 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-    // DASHBOARD BALANCE API
     private void loadDashboardBalance() {
 
         if (customerId <= 0) {
-
             bankBalanceText.setText("৳ 0.00");
             walletBalanceText.setText("৳ 0.00");
 
@@ -119,20 +127,16 @@ public class DashboardActivity extends AppCompatActivity {
                 );
 
                 connection = (HttpURLConnection) url.openConnection();
-
                 connection.setRequestMethod("GET");
                 connection.setConnectTimeout(10000);
                 connection.setReadTimeout(10000);
 
                 int responseCode = connection.getResponseCode();
 
-                InputStream inputStream;
-
-                if (responseCode >= 200 && responseCode < 300) {
-                    inputStream = connection.getInputStream();
-                } else {
-                    inputStream = connection.getErrorStream();
-                }
+                InputStream inputStream =
+                        responseCode >= 200 && responseCode < 300
+                                ? connection.getInputStream()
+                                : connection.getErrorStream();
 
                 if (inputStream == null) {
                     throw new Exception("Empty server response");
@@ -143,7 +147,6 @@ public class DashboardActivity extends AppCompatActivity {
                 );
 
                 StringBuilder response = new StringBuilder();
-
                 String line;
 
                 while ((line = reader.readLine()) != null) {
@@ -152,13 +155,12 @@ public class DashboardActivity extends AppCompatActivity {
 
                 reader.close();
 
-                if (responseCode != HttpURLConnection.HTTP_OK) {
+                if (responseCode != 200) {
                     throw new Exception("Server error: " + responseCode);
                 }
 
-                JSONObject jsonResponse = new JSONObject(
-                        response.toString()
-                );
+                JSONObject jsonResponse =
+                        new JSONObject(response.toString());
 
                 if (!jsonResponse.optBoolean("success", false)) {
                     throw new Exception(
@@ -169,26 +171,15 @@ public class DashboardActivity extends AppCompatActivity {
                     );
                 }
 
-                double bankBalance = jsonResponse.optDouble(
-                        "bankBalance",
-                        0.0
-                );
+                double bankBalance =
+                        jsonResponse.optDouble("bankBalance", 0.0);
 
-                double walletBalance = jsonResponse.optDouble(
-                        "walletBalance",
-                        0.0
-                );
+                double walletBalance =
+                        jsonResponse.optDouble("walletBalance", 0.0);
 
                 mainHandler.post(() -> {
-
-                    bankBalanceText.setText(
-                            formatBalance(bankBalance)
-                    );
-
-                    walletBalanceText.setText(
-                            formatBalance(walletBalance)
-                    );
-
+                    bankBalanceText.setText(formatBalance(bankBalance));
+                    walletBalanceText.setText(formatBalance(walletBalance));
                 });
 
             } catch (Exception error) {
@@ -200,7 +191,6 @@ public class DashboardActivity extends AppCompatActivity {
                 );
 
                 mainHandler.post(() -> {
-
                     bankBalanceText.setText("৳ Unavailable");
                     walletBalanceText.setText("৳ Unavailable");
 
@@ -209,7 +199,6 @@ public class DashboardActivity extends AppCompatActivity {
                             "Unable to load account balance",
                             Toast.LENGTH_LONG
                     ).show();
-
                 });
 
             } finally {
@@ -217,18 +206,14 @@ public class DashboardActivity extends AppCompatActivity {
                 if (connection != null) {
                     connection.disconnect();
                 }
-
             }
-
         });
     }
 
-    // FORMAT BALANCE
     private String formatBalance(double balance) {
 
-        NumberFormat formatter = NumberFormat.getNumberInstance(
-                Locale.US
-        );
+        NumberFormat formatter =
+                NumberFormat.getNumberInstance(Locale.US);
 
         formatter.setMinimumFractionDigits(2);
         formatter.setMaximumFractionDigits(2);
@@ -236,7 +221,6 @@ public class DashboardActivity extends AppCompatActivity {
         return "৳ " + formatter.format(balance);
     }
 
-    // CREATE SERVICE CARDS
     private void createServiceCards() {
 
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -244,7 +228,6 @@ public class DashboardActivity extends AppCompatActivity {
         for (int i = 0; i < serviceNames.length; i += 3) {
 
             LinearLayout row = new LinearLayout(this);
-
             row.setOrientation(LinearLayout.HORIZONTAL);
 
             LinearLayout.LayoutParams rowParams =
@@ -254,7 +237,6 @@ public class DashboardActivity extends AppCompatActivity {
                     );
 
             rowParams.bottomMargin = dpToPx(5);
-
             servicesContainer.addView(row, rowParams);
 
             for (int j = i; j < i + 3 && j < serviceNames.length; j++) {
@@ -265,13 +247,8 @@ public class DashboardActivity extends AppCompatActivity {
                         false
                 );
 
-                TextView icon = card.findViewById(
-                        R.id.serviceIcon
-                );
-
-                TextView name = card.findViewById(
-                        R.id.serviceName
-                );
+                TextView icon = card.findViewById(R.id.serviceIcon);
+                TextView name = card.findViewById(R.id.serviceName);
 
                 icon.setText(serviceIcons[j]);
                 name.setText(serviceNames[j]);
@@ -280,7 +257,6 @@ public class DashboardActivity extends AppCompatActivity {
 
                 card.setOnClickListener(v -> {
 
-                    // OPEN ADD MONEY SCREEN
                     if (selectedService.equals("Add Money")) {
 
                         Intent intent = new Intent(
@@ -289,13 +265,9 @@ public class DashboardActivity extends AppCompatActivity {
                         );
 
                         intent.putExtra("CUSTOMER_ID", customerId);
-
                         startActivity(intent);
 
-                    }
-
-                    // OPEN BANK DEPOSIT SCREEN
-                    else if (selectedService.equals("Bank Deposit")) {
+                    } else if (selectedService.equals("Bank Deposit")) {
 
                         Intent intent = new Intent(
                                 DashboardActivity.this,
@@ -303,13 +275,9 @@ public class DashboardActivity extends AppCompatActivity {
                         );
 
                         intent.putExtra("CUSTOMER_ID", customerId);
-
                         startActivity(intent);
 
-                    }
-
-                    // OPEN SEND MONEY MENU
-                    else if (selectedService.equals("Send Money")) {
+                    } else if (selectedService.equals("Send Money")) {
 
                         Intent intent = new Intent(
                                 DashboardActivity.this,
@@ -317,22 +285,16 @@ public class DashboardActivity extends AppCompatActivity {
                         );
 
                         intent.putExtra("CUSTOMER_ID", customerId);
-
                         startActivity(intent);
 
-                    }
-
-                    // OTHER SERVICES
-                    else {
+                    } else {
 
                         Toast.makeText(
                                 DashboardActivity.this,
                                 selectedService + " Selected",
                                 Toast.LENGTH_SHORT
                         ).show();
-
                     }
-
                 });
 
                 row.addView(card);
@@ -340,16 +302,13 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-    // CONVERT DP TO PIXELS
     private int dpToPx(int dp) {
-
         return (int) (
                 dp * getResources()
                         .getDisplayMetrics().density + 0.5f
         );
     }
 
-    // ACTIVITY DESTROY
     @Override
     protected void onDestroy() {
 
